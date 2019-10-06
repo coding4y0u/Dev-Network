@@ -322,13 +322,11 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
       .map(item => item.id)
       .indexOf(req.params.edu_id);
 
-    if (removeIndex >= 0) {
-      profile.education.splice(removeIndex, 1);
+    profile.education.splice(removeIndex, 1);
 
-      await profile.save();
+    await profile.save();
 
-      return res.json(profile);
-    }
+    res.json(profile);
 
     throw {
       message: "Error not found"
